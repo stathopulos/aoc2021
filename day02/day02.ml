@@ -5,16 +5,16 @@ let read_lines file =
 (* part 1 *)
 type point = int * int
 
-let c_forward ((x, y) : point) (mag : int) : point = (x + mag, y)
-let c_up ((x, y) : point) (mag : int) : point = (x, y - mag)
-let c_down ((x, y) : point) (mag : int) : point = (x, y + mag)
+let c_forward (x, y) mag = (x + mag, y)
+let c_up (x, y) mag = (x, y - mag)
+let c_down (x, y) mag = (x, y + mag)
 
 (* part 2 *)
 type aim_point = point * int
 
-let aim_down (((x, y), aim) : aim_point) arg : aim_point = ((x, y), aim + arg)
-let aim_up ((x, y), aim) arg : aim_point = ((x, y), aim - arg)
-let aim_forward ((x, y), aim) arg : aim_point = ((x + arg, y + (aim * arg)), aim)
+let aim_down ((x, y), aim) arg = ((x, y), aim + arg)
+let aim_up ((x, y), aim) arg = ((x, y), aim - arg)
+let aim_forward ((x, y), aim) arg = ((x + arg, y + (aim * arg)), aim)
 
 let process (forward, up, down, point) lst =
   let process_line point str =
@@ -37,6 +37,7 @@ let _ =
   let part_1 (x, y) = "Part 1: " ^ string_of_int (x * y) in
   let c_sub = (c_forward, c_up, c_down, (0, 0)) in
   solve c_sub part_1
+
 let _ =
   let part_2 ((x, y), _) = "Part 2: " ^ string_of_int (x * y) in
   let aim_sub = (aim_forward, aim_up, aim_down, ((0, 0), 0)) in
