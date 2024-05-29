@@ -3,15 +3,11 @@ let read_lines file =
   String.split_on_char '\n' contents
 
 (* part 1 *)
-type point = int * int
-
 let c_forward (x, y) mag = (x + mag, y)
 let c_up (x, y) mag = (x, y - mag)
 let c_down (x, y) mag = (x, y + mag)
 
 (* part 2 *)
-type aim_point = point * int
-
 let aim_down ((x, y), aim) arg = ((x, y), aim + arg)
 let aim_up ((x, y), aim) arg = ((x, y), aim - arg)
 let aim_forward ((x, y), aim) arg = ((x + arg, y + (aim * arg)), aim)
